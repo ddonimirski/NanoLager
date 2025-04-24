@@ -1,0 +1,57 @@
+services:
+  api_gateway:
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile
+    container_name: api_gateway
+    ports:
+    - 3000:3000
+    volumes:
+    - ./bin/api-gateway:/app/api-gateway
+  jpk:
+    build:
+      context: ./services/jpk
+      dockerfile: Dockerfile
+    container_name: jpk
+    ports: []
+    volumes:
+    - ./bin/jpk:/app/jpk
+  postgres:
+    container_name: postgres
+    environment:
+      POSTGRES_DB: nanoledger
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+    image: postgres:15
+    ports:
+    - 5432:5432
+    restart: always
+    volumes:
+    - pgdata:/var/lib/postgresql/data
+  renderer:
+    build:
+      context: ./services/renderer
+      dockerfile: Dockerfile
+    container_name: renderer
+    ports: []
+    volumes:
+    - ./bin/renderer:/app/renderer
+  reporting:
+    build:
+      context: ./services/reporting
+      dockerfile: Dockerfile
+    container_name: reporting
+    ports: []
+    volumes:
+    - ./bin/reporting:/app/reporting
+  storage:
+    build:
+      context: ./services/storage
+      dockerfile: Dockerfile
+    container_name: storage
+    ports: []
+    volumes:
+    - ./bin/storage:/app/storage
+version: '3.8'
+volumes:
+  pgdata: {}

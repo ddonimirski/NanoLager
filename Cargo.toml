@@ -1,0 +1,12 @@
+[workspace]
+members = [
+    "common",
+    "services/renderer",
+    "services/api-gateway",
+    "services/storage",
+    "services/reporting",
+    "services/jpk",
+    "regions/pl",
+    "regions/de",
+    "regions/fr"
+]

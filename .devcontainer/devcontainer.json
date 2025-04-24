@@ -1,0 +1,22 @@
+{
+    "name": "NanoLedger Dev",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "postCreateCommand": "cargo build",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "fish"
+            },
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "vadimcn.vscode-lldb",
+                "ms-azuretools.vscode-docker"
+            ]
+        }
+    },
+    "forwardPorts": [
+        5432
+    ]
+}
